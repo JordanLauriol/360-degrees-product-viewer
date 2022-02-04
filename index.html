@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>360 product viewer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style>
+    #js-gallery-dummy { display: none; }
+
+    #js-loading {
+        width: 200px;
+        height: 10px;
+        background-color: lightgray;
+    }
+
+    #js-loading-progression {
+        width: 0%;
+        background-color: lightgreen;
+        height: inherit;
+    }
+</style>
+<body>
+    <div 
+        id="js-gallery-items"
+        data-autoplay="false" 
+        data-source="dist/img/green" 
+        data-frames="164"
+    >
+    </div>
+    <div id="js-gallery-dummy"></div>
+
+    <div id="js-loading">
+        <div id="js-loading-progression"></div>
+    </div>
+
+    <button>
+        Change the product
+    </button>
+
+    <script src="dist/js/jquery-3.6.0.min.js"></script>
+    <script src="dist/js/jquery-ui.js"></script>
+    <script src="dist/js/preview.js" defer></script>
+
+    <script>
+        $(document).ready(function() {
+            // Example of changing a product parameter without refreshing the page.
+            $("button").click(function() {
+                const elmt = $("#js-gallery-items");
+                
+                elmt.attr('data-source', 'dist/img/orange');
+
+                document.dispatchEvent(new Event('refreshGallery'));
+            });
+        });
+    </script>
+</body>
+</html>
